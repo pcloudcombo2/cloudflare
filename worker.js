@@ -14,7 +14,24 @@ export default {
 
     try {
       // 1. Get temporary auth token
-      const tokenRes = await fetch("https://api.redgifs.com/v2/auth/temporary");
+      const tokenRes = await fetch(
+        "https://api.redgifs.com/v2/auth/temporary",
+        {
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+            "Accept": "application/json",
+            "Referer": "https://www.redgifs.com/",
+            "Origin": "https://www.redgifs.com",
+          },
+        }
+      );
+
+      if (!tokenRes.ok) {
+        const text = await tokenRes.text();
+        throw new Error(`Auth failed: ${tokenRes.status} ${text}`);
+      }
+
       const tokenData = await tokenRes.json();
 
       if (!tokenData?.token) {
