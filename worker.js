@@ -66,12 +66,15 @@ export default {
       const mp4 =
         urls.hd ||
         urls.sd ||
-        urls.gif;
+      //   urls.gif;
 
-      return json({
-        id: gifId,
-        mp4,
-      });
+      // return json({
+      //   id: gifId,
+      //   mp4,
+      // });
+      
+      return json(gifData);
+      
     } catch (err) {
       return json({ error: err.message }, 500);
     }
