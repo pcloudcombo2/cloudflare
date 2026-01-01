@@ -66,7 +66,7 @@ export default {
       const mp4 =
         urls.hd ||
         urls.sd ||
-      //   urls.gif;
+        urls.gif;
 
       // return json({
       //   id: gifId,
