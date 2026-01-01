@@ -48,6 +48,11 @@ export default {
         }
       );
 
+      if (!gifRes.ok) {
+        const text = await gifRes.text();
+        throw new Error(`Auth failed: ${gifRes.status} ${text}`);
+      }
+
       const gifData = await gifRes.json();
 
       const urls = gifData?.gif?.urls;
